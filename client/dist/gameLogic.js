@@ -50,19 +50,27 @@ const wordScore = (str, startCoors, endCoors) => {
       let x = startCoors[0];
       let y;
       let length = endCoors[1] - startCoors[1];
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i <= length; i++) {
+       
+       
+       
+       
         y = startCoors[1] + i;
         if (x % 7 === 0) {
-          //test if current y coordinate is % 7
-            //wordMultiplier = 3;
-        } else if (startCoors[1]) {}
-        else if ((startCoors[1] >= 1 && x <= 4) || (x >= 10 && x <= 13)) {
+          if (y % 7 === 0) {
+            if (y !== 7 && x !== 7) {
+              wordMultiplier = 3;
+            }
+          } else if (y === 3 || y === 11) {
+            //letter score is doubled;
+          }
+        } else if ((startCoors[1] >= 1 && x <= 4) || (x >= 10 && x <= 13)) {
           if(startCoors[1+i] === startCoors[0]) {
             wordMultiplier = 2;
           } else if (startCoors[1+i] === -startCoors[0]+14) {
             wordMultiplier = 2;
           }
-        }
+        } 
       }
 
 

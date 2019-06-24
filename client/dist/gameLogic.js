@@ -55,20 +55,36 @@ const shuffleScrabbleBag = (arr) => {
   return arr;
 }
 
-const wordScore = (str, startCoors, endCoors) => {
+const addLetterToRack = (letterArr) => {
+  return letterArr.pop();
+}
+
+const wordScore = (strOfLetters, startCoors, endCoors) => {
   let score = 0;
   let wordMultiplier = 1;
-  let x;
-  let y;
+  
   let length;
   if (endCoors[0]-startCoors[0] === 0) {
     length = endCoors[1] - startCoors[1];
   } else {
     length = endCoors[0] - startCoors[0];
   }
+
   for (let i = 0; i <= length; i++) {
-    let letterMultiplier = 1;     
-    
+    let letterMultiplier = 1;
+    let currentCoor;     
+    if (traversingVertically) {
+      currentCoor = startCoors.slice(0,3)+(Number(startCoors.slice(3,5)+i)).toString();
+    } else {
+      currentCoor = (Number(startCoors.slice(0,2))+i).toString()+startCoors.slice(2,5);
+    }
+    //given current letter coordinates check if there is a bonus tile.
+    //the tiles will only move laterally so some of the coordinates should be a reference to the start coordinates
+    if (bonusTile[currentCoor].type === 'wordMultiplier') {
+      wordMultiplier *= bonusTile[currentCoor].value;
+    } else if (bonusTile[currentCoor].type === 'letterMultiplier') {
+      letterMultiplier = bonusTile[currentCoor].value;
+    }
 
     score += letterPoints[i]*letterMultiplier;
   }
@@ -103,7 +119,7 @@ Board.prototype.create_board = (size) => {
 }
 
 const preventBoardOverwrite = (board, x_pos, y_pos, letter) => {
-  if (board[y_pos][x_pos] === '') board[y_pos][x_pos] === letter;
+  if (board[y_pos][x_pos].length === 5) board[y_pos][x_pos] += letter;
   else console.log('Invalid Move');
 }
 

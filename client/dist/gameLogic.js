@@ -22,7 +22,7 @@ const word2MultObj = {'type' : 'wordMultiplier', 'value': 2};
 const lett3MultObj = { 'type' : 'letterMultiplier', 'value': 3};
 const lett2MultObj = {'type' : 'letterMultiplier', 'value': 2};
 
-//keys will be 2 character strings of coordinates x and y => 'xy'.  Test to see if a hash table will offer better performance.
+//keys will be 2 character strings of coordinates x and y => 'x-y' with the string always having a length of 5;
 const bonusTile = {
   '00-00' : word3MultObj, '14-00' : word3MultObj, '01-01' : word3MultObj, '14-07' : word3MultObj,  
   '00-14' : word3MultObj, '07-14' : word3MultObj, '14-14' : word3MultObj, '00-07' : word3MultObj,
@@ -60,54 +60,49 @@ const addLetterToRack = (letterArr) => {
 }
 
 const wordScore = (strOfLetters, startCoors, endCoors) => {
-
   let score = 0;
   let wordMultiplier = 1;
+
   let traversingVertically = false;
-  let length;
-  if (endCoors[0]-startCoors[0] === 0) {
+  if (Number(endCoors.slice(0,2))-Number(startCoors.slice(0,2)) === 0) {
     traversingVertically = true;
-    length = endCoors[1] - startCoors[1];
-  } else {
-    length = endCoors[0] - startCoors[0];
   }
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < strOfLetters.length; i++) {
     let letterMultiplier = 1;
+
     let currentCoor;
     if (traversingVertically) {
-      if (Number(startCoors.slice(3,5)) + i < 10) {
-        currentCoor = startCoors.slice(0,3) + '0' + (Number(startCoors.slice(3,5)+i)).toString();
-       } else {
-        currentCoor = startCoors.slice(0,3) + (Number(startCoors.slice(3,5)+i)).toString(); 
-       }
+
+      let prefix = startCoors.slice(0,3);
+      let suffix = (Number(startCoors.slice(3,5)+i)).toString();
+      (Number(startCoors.slice(3,5)) + i < 10) ? currentCoor = prefix + '0' + suffix : currentCoor = prefix + suffix 
+
     } else {
-      if (Number(startCoors.slice(0,2)) + i < 10) {
-        currentCoor = '0' + (Number(startCoors.slice(0,2))+i).toString() + startCoors.slice(2,5);
-      } else {
-        currentCoor = (Number(startCoors.slice(0,2))+i).toString() + startCoors.slice(2,5); //this works for x-coordinates of 9 and above
-      }
-    }
-    //given current letter coordinates check if there is a bonus tile.
-    //the tiles will only move laterally so some of the coordinates should be a reference to the start coordinates
-    if (bonusTile[currentCoor].type === 'wordMultiplier') {
-      wordMultiplier *= bonusTile[currentCoor].value;
-    } else if (bonusTile[currentCoor].type === 'letterMultiplier') {
-      letterMultiplier = bonusTile[currentCoor].value;
+
+      let prefix = (Number(startCoors.slice(0,2))+i).toString();
+      let suffix = startCoors.slice(2,5);
+      (Number(startCoors.slice(0,2)) + i < 10) ? currentCoor = '0' + prefix + suffix : currentCoor = prefix + suffix
+
     }
 
+    if (bonusTile[currentCoor] && bonusTile[currentCoor].type === 'wordMultiplier') {
+      wordMultiplier *= bonusTile[currentCoor].value;
+    } else if (bonusTile[currentCoor] && bonusTile[currentCoor].type === 'letterMultiplier') {
+      letterMultiplier = bonusTile[currentCoor].value;
+    }
     score += letterPoints[strOfLetters[i]]*letterMultiplier;
   }
   score *= wordMultiplier;
   return score;
 }
 
-const Board = (size) => {
-  this.size = size;
-  this.board = this.create_board(size);
+const Board = () => {
+  this.size = 15;
+  this.board = this.create_board();
 }
 
-Board.prototype.create_board = (size) => {
+Board.prototype.create_board = () => {
   let m = [
     ['00-00','01-00','02-00','03-00','04-00','05-00','06-00','07-00','08-00','09-00','10-00','11-00','12-00','13-00','14-00'],
     ['00-01','01-01','02-01','03-01','04-01','05-01','06-01','07-01','08-01','09-01','10-01','11-01','12-01','13-01','14-01'],
@@ -144,7 +139,6 @@ const preventBoardOverwrite = (board, x_pos, y_pos, letter) => {
 //   'A': 9,  'I': 9,
 //   'E': 12
 // }
-
 
   //check if characters are traveling horizontally or vertically
     //if horizontal 

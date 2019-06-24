@@ -60,23 +60,33 @@ const addLetterToRack = (letterArr) => {
 }
 
 const wordScore = (strOfLetters, startCoors, endCoors) => {
+
   let score = 0;
   let wordMultiplier = 1;
-  
+  let traversingVertically = false;
   let length;
   if (endCoors[0]-startCoors[0] === 0) {
+    traversingVertically = true;
     length = endCoors[1] - startCoors[1];
   } else {
     length = endCoors[0] - startCoors[0];
   }
 
-  for (let i = 0; i <= length; i++) {
+  for (let i = 0; i < length; i++) {
     let letterMultiplier = 1;
-    let currentCoor;     
+    let currentCoor;
     if (traversingVertically) {
-      currentCoor = startCoors.slice(0,3)+(Number(startCoors.slice(3,5)+i)).toString();
+      if (Number(startCoors.slice(3,5)) + i < 10) {
+        currentCoor = startCoors.slice(0,3) + '0' + (Number(startCoors.slice(3,5)+i)).toString();
+       } else {
+        currentCoor = startCoors.slice(0,3) + (Number(startCoors.slice(3,5)+i)).toString(); 
+       }
     } else {
-      currentCoor = (Number(startCoors.slice(0,2))+i).toString()+startCoors.slice(2,5);
+      if (Number(startCoors.slice(0,2)) + i < 10) {
+        currentCoor = '0' + (Number(startCoors.slice(0,2))+i).toString() + startCoors.slice(2,5);
+      } else {
+        currentCoor = (Number(startCoors.slice(0,2))+i).toString() + startCoors.slice(2,5); //this works for x-coordinates of 9 and above
+      }
     }
     //given current letter coordinates check if there is a bonus tile.
     //the tiles will only move laterally so some of the coordinates should be a reference to the start coordinates
@@ -86,7 +96,7 @@ const wordScore = (strOfLetters, startCoors, endCoors) => {
       letterMultiplier = bonusTile[currentCoor].value;
     }
 
-    score += letterPoints[i]*letterMultiplier;
+    score += letterPoints[strOfLetters[i]]*letterMultiplier;
   }
   score *= wordMultiplier;
   return score;
@@ -122,7 +132,6 @@ const preventBoardOverwrite = (board, x_pos, y_pos, letter) => {
   if (board[y_pos][x_pos].length === 5) board[y_pos][x_pos] += letter;
   else console.log('Invalid Move');
 }
-
 
 //may not need this code here:
 // const letterFrequency = {

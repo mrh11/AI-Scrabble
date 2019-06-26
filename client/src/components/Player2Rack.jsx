@@ -1,4 +1,4 @@
-const Player2Rack = ({rack}) => {
+const Player2Rack = ({rack, setLetter}) => {
   return (
 
     <div className="rack-container">
@@ -6,7 +6,7 @@ const Player2Rack = ({rack}) => {
     {(rack.length === 0) 
           ? <div></div> 
           : rack.map((letter, i) => {
-            return <img src={window.letterImages[letter]} key={i} alt="scrabble letter" className={`letter${i}`} />})
+            return <img src={window.letterImages[letter]} key={i} alt="scrabble letter" className={`letter${i}`} onClick={()=>{setLetter(letter)}}/>})
         }
     </div>
 

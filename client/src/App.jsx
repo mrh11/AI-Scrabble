@@ -27,12 +27,23 @@ const App = () => {
   }
 
   //create function which efficiently locates on the grid the currentBoardTile and Appends the letter to it
-  let appendLetterToGrid = () => {
+  let appendLetterToGrid = (aLetter) => {
     let str = currentBoardTile;
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
-    window.grid[row][col] += currentLetter;
-    console.log(window.grid[row][col])
+    window.grid[row][col] += aLetter;
+
+    if (playerState === 1) {
+      let letterArr = p1Rack;
+      letterArr.splice(letterArr.indexOf(aLetter),1);
+      updatePlayer1Rack(letterArr);
+      console.log('this is active');
+    } else {
+      let letterArr = p2Rack;
+      letterArr.splice(letterArr.indexOf(aLetter),1);
+      updatePlayer2Rack(letterArr);
+    }
+
   }
   
   return (
@@ -40,11 +51,11 @@ const App = () => {
     <ScrabbleBag playerState={playerState} p2Rack={p2Rack} updatePlayer2Rack={updatePlayer2Rack} p1Rack={p1Rack} updatePlayer1Rack={updatePlayer1Rack} addLetterToRack={addLetterToRack}/>
     <h1 >{`Player: ${playerState}`}</h1>
     <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}} className="button">Switch Player</button>
-    <button onClick={()=> {appendLetterToGrid()}} className="setTileButton">Set Tile</button>
+    <button onClick={()=> {appendLetterToGrid(currentLetter)}} className="setTileButton">Set Tile</button>
   <div >
     <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile}/>
   </div>
-  {(playerState === 1) ? <Player1Rack rack={p1Rack} currentLetter={currentLetter} setLetter={setLetter}/> : <Player2Rack rack={p2Rack} currentLetter={currentLetter} setLetter={setLetter}/>} 
+  {(playerState === 1) ? <Player1Rack rack={p1Rack} setLetter={setLetter}/> : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 
   </div>
   )
 }

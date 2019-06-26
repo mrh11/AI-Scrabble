@@ -6,12 +6,11 @@ const BoardView = ({grid, updateGrid, currentLetter, setCurrentBoardTile, curren
   {window.grid.map((col, i) => { return (
     col.map((row, j) => {
     if (row[5]) {
-      console.log("Testing", row[5])
       return (<img src={window.letterImages[row[5]]} alt="a letter" key={row.toString().slice(0,5)} style={{width: '95%'}} />)
     } else if (currentLetter && currentBoardTile && currentBoardTile === row) {
       return ( <img src={window.letterImages[currentLetter]} alt="a letter" key={row.toString().slice(0,5)} style={{width: '95%'}} />)
     } else {
-      return (<div key={row.toString().slice(0,5)} value={row.toString().slice(0,5)} onClick = {() => {setCurrentBoardTile(row.toString().slice(0,5)); console.log(row.toString().slice(0,5)); console.log(currentLetter)}}>
+      return (<div key={row.toString().slice(0,5)} value={row.toString().slice(0,5)} onClick = {() => {setCurrentBoardTile(row.toString().slice(0,5));}}>
               </div>)
     }
     }))

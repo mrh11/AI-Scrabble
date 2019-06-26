@@ -9,9 +9,9 @@ const ScrabbleBag = ({playerState, addLetterToRack, updatePlayer2Rack, p2Rack, u
       
       onClick={()=> {
         if (playerState === 2) {
-        (p2Rack.length < 7) ? updatePlayer2Rack([...p2Rack, addLetterToRack()]) : console.log("Too many tiles on rack"); console.log("Player 2", p2Rack);
+        (p2Rack.length < 7) ? updatePlayer2Rack([...p2Rack, addLetterToRack()]) : console.log("Too many tiles on rack");
         } else {
-        (p1Rack.length < 7) ? updatePlayer1Rack([...p1Rack, addLetterToRack()]) : console.log("Too many tiles on rack"); console.log("Player 1", p1Rack.length)
+        (p1Rack.length < 7) ? updatePlayer1Rack([...p1Rack, addLetterToRack()]) : console.log("Too many tiles on rack");
         }}}
       />
       </div>

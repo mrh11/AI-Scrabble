@@ -28,6 +28,7 @@ const App = () => {
 
   //create function which efficiently locates on the grid the currentBoardTile and Appends the letter to it
   let appendLetterToGrid = (aLetter) => {
+
     let str = currentBoardTile;
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
@@ -43,7 +44,6 @@ const App = () => {
       letterArr.splice(letterArr.indexOf(aLetter),1);
       updatePlayer2Rack(letterArr);
     }
-
   }
   
   return (

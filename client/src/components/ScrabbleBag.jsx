@@ -4,7 +4,7 @@ const ScrabbleBag = ({playerState, addLetterToRack, updatePlayer2Rack, p2Rack, u
   return (
     <div className="bag-container">
     <img 
-      src="http://chittagongit.com/images/pouch-icon/pouch-icon-16.jpg" 
+      src="https://scrabblehrnyc22.s3.amazonaws.com/pouch-icon-16.png" 
       alt="scrabble bag" 
       
       onClick={()=> {

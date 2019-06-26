@@ -1,9 +1,15 @@
-const Player2Rack = (props) => {
+const Player2Rack = ({rack}) => {
   return (
-    <div className="rackContainer">
-      <img src={props.letterImages['A']} alt="testing" className="letter"/>
-      <img src="http://clipart-library.com/img/937517.png" alt="PlayerRack" className="rack"/>
+
+    <div className="rack-container">
+    <img src="http://clipart-library.com/img/937517.png" alt="PlayerRack" className="rack"/>
+    {(rack.length === 0) 
+          ? <div></div> 
+          : rack.map((letter, i) => {
+            return <img src={window.letterImages[letter]} key={i} alt="scrabble letter" className={`letter${i}`} />})
+        }
     </div>
+
   )
 }
 

@@ -33,6 +33,12 @@
   right: 100px;
 }
 
+.setTileButton {
+  position: absolute;
+  top: 700px;
+  right: 100px;
+}
+
 .rack-container {
   display: grid;
   grid-template-columns: 300px 300px 300px 300px 300px 300px 300px;

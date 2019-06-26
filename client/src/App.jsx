@@ -26,13 +26,13 @@ const App = () => {
    }
   }
 
-  //create function which efficiently locates on the grid the currentBoardTile
-  //the final two characters are the row, the first two are the column
+  //create function which efficiently locates on the grid the currentBoardTile and Appends the letter to it
   let appendLetterToGrid = () => {
     let str = currentBoardTile;
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
     window.grid[row][col] += currentLetter;
+    console.log(window.grid[row][col])
   }
   
   return (
@@ -40,7 +40,7 @@ const App = () => {
     <ScrabbleBag playerState={playerState} p2Rack={p2Rack} updatePlayer2Rack={updatePlayer2Rack} p1Rack={p1Rack} updatePlayer1Rack={updatePlayer1Rack} addLetterToRack={addLetterToRack}/>
     <h1 >{`Player: ${playerState}`}</h1>
     <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}} className="button">Switch Player</button>
-    <button onClick={()=> {console.log('testing')}} className="setTileButton">Set Tile</button>
+    <button onClick={()=> {appendLetterToGrid()}} className="setTileButton">Set Tile</button>
   <div >
     <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile}/>
   </div>

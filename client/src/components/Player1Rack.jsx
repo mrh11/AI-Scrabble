@@ -1,14 +1,20 @@
 import React from 'react';
 
-const Player1Rack = ({rack, setLetter}) => {
+const Player1Rack = ({rack, setLetter, setCurrentBoardTile, updatePlayer1Rack}) => {
   return (
     <div className="rack-container">
-        <img src="http://clipart-library.com/img/937517.png" alt="PlayerRack" className="rack"/>
-        {(rack.length === 0) 
-          ? <div></div> 
-          : rack.map((letter, i) => {
-            return <img src={window.letterImages[letter]} key={i} alt="scrabble letter" className={`letter${i}`} onClick={()=>{setLetter(letter);}}/>})
-        }
+      {/* <img src="http://clipart-library.com/img/937517.png" alt="PlayerRack" className="rack"/> */}
+      {(rack.length === 0) 
+        ? <div></div> 
+        : rack.map((letter, i) => {
+          return <img 
+                    src={window.letterImages[letter]} 
+                    key={i} alt="scrabble letter" 
+                    draggable="true"
+                    onDragStart= {() => {rack.splice(rack.indexOf(letter),1)}}
+                    onClick={()=>{setLetter(letter);}}/>
+          })
+      }
     </div>
   )
 }

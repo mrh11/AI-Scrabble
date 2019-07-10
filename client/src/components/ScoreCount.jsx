@@ -2,7 +2,7 @@ import React from 'react'
 
 const ScoreCount = (props) => {
   return (
-    <div style={{float: "right"}}>Hello World</div>
+    <div className="score">Hello World</div>
   )
 }
 

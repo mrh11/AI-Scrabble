@@ -9,7 +9,6 @@ import ScrabbleBag from './components/ScrabbleBag.jsx'
 import ScoreCount from './components/ScoreCount.jsx'
 
 const App = () => {
-
   const [playerState, changePlayer] = useState(1);  //switch between player1 and player 2
   const [p1Rack, updatePlayer1Rack] = useState([]);  //add tiles to player1 rack
   const [p2Rack, updatePlayer2Rack] = useState([]); //add tiles to player2 rack
@@ -28,7 +27,6 @@ const App = () => {
 
   //create function which efficiently locates on the grid the currentBoardTile and Appends the letter to it
   let appendLetterToGrid = (aLetter) => {
-
     let str = currentBoardTile;
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
@@ -38,7 +36,6 @@ const App = () => {
       let letterArr = p1Rack;
       letterArr.splice(letterArr.indexOf(aLetter),1);
       updatePlayer1Rack(letterArr);
-      console.log('this is active');
     } else {
       let letterArr = p2Rack;
       letterArr.splice(letterArr.indexOf(aLetter),1);
@@ -58,6 +55,9 @@ const App = () => {
     <img src="https://scrabblehrnyc22.s3.amazonaws.com/Board.png" alt="board picture" className="boardImage"/> 
     <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile}/>
   {(playerState === 1) ? <Player1Rack rack={p1Rack} setLetter={setLetter} setCurrentBoardTile={setCurrentBoardTile} updatePlayer1Rack={updatePlayer1Rack}/> : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 
+    <div>
+      <ScoreCount/>
+    </div>
   </div>
   </div>
   )

@@ -46,19 +46,17 @@ const App = () => {
   return (
   <div>
     <h1 >{`Player: ${playerState}`}</h1>
-  <div className="grid">
-    <ScrabbleBag playerState={playerState} p2Rack={p2Rack} updatePlayer2Rack={updatePlayer2Rack} p1Rack={p1Rack} updatePlayer1Rack={updatePlayer1Rack} addLetterToRack={addLetterToRack}/>
-    <div className="button-container">
-    <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}}>Switch Player</button>
-    <button onClick={()=> {appendLetterToGrid(currentLetter)}}>Set Tile</button>
-    </div>
-    <img src="https://scrabblehrnyc22.s3.amazonaws.com/Board.png" alt="board picture" className="boardImage"/> 
-    <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile}/>
-  {(playerState === 1) ? <Player1Rack rack={p1Rack} setLetter={setLetter} setCurrentBoardTile={setCurrentBoardTile} updatePlayer1Rack={updatePlayer1Rack}/> : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 
-    <div>
+    <div className="grid">
+      <ScrabbleBag playerState={playerState} p2Rack={p2Rack} updatePlayer2Rack={updatePlayer2Rack} p1Rack={p1Rack} updatePlayer1Rack={updatePlayer1Rack} addLetterToRack={addLetterToRack}/>
+      <div className="button-container">
+        <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}}>Switch Player</button>
+        <button onClick={()=> {appendLetterToGrid(currentLetter)}}>Set Tile</button>
+      </div>
+      <img src="https://scrabblehrnyc22.s3.amazonaws.com/Board.png" alt="board picture" className="boardImage"/> 
+      <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile} appendLetterToGrid={appendLetterToGrid}/>
+      {(playerState === 1) ? <Player1Rack rack={p1Rack} setLetter={setLetter} setCurrentBoardTile={setCurrentBoardTile} updatePlayer1Rack={updatePlayer1Rack}/> : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 
       <ScoreCount/>
     </div>
-  </div>
   </div>
   )
 }

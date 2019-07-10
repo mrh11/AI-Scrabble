@@ -5,18 +5,46 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 720px 3% 10% 17%;
+  grid-template-columns: 720px 3% 10% 20%;
   grid-template-rows: 720px 1% 17%;
 }
 
 .score {
   grid-column: 4;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 96px 45px 96px 45px;
+  grid-template-rows: repeat(35, 20px);
 }
 
+.score > div {
+  border: 0.05px solid goldenrod;
+  text-align: center;
+}
 
+.p1Header {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.p1Total {
+  grid-column: 1;
+  font-weight: bold;
+}
+
+.p1TotalScore {
+  grid-column: 2;
+  font-weight: bold;
+}
+
+.p2Total {
+  grid-column: 3;
+  font-weight: bold;
+}
+
+.p2TotalScore {
+  grid-column: 4;
+  font-weight: bold;
+}
 
 .boardImage {
   grid-column: 1;
@@ -32,7 +60,6 @@
   grid-template-rows: repeat(15, 48px);
   grid-column: 1/2;
   grid-row: 1/2;
-
 }
 
 .container-board > div {

@@ -42,6 +42,7 @@ Trie.prototype.contains = function(word) {
   return node.isWord;
 }
 
+//time complexity O(n), n = word length
 Trie.prototype.startWith = function(prefix) {
   let node = this.root;
 

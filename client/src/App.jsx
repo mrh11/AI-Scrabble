@@ -17,11 +17,11 @@ const App = () => {
   const [currentBoardTile, setCurrentBoardTile] = useState(''); //if a player clicks on a board tile while a letter is selected, render the tile
 
   let addLetterToRack = () => {
-   if (window.scrabbleBag.length === 0) {
+   if (window.Scrabble.scrabbleBag.length === 0) {
      console.log('Out of Tiles');
    } else {
-     window.scrabbleBag = window.shuffleScrabbleBag(window.scrabbleBag);
-     return window.scrabbleBag.pop();
+     window.Scrabble.scrabbleBag = window.shuffleScrabbleBag(window.Scrabble.scrabbleBag);
+     return window.Scrabble.scrabbleBag.pop();
    }
   }
 
@@ -30,7 +30,7 @@ const App = () => {
     let str = currentBoardTile;
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
-    window.grid[row][col] += aLetter;
+    window.Scrabble.grid[row][col] += aLetter;
 
     if (playerState === 1) {
       let letterArr = p1Rack;

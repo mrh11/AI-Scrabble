@@ -8,7 +8,7 @@ const Player1Rack = ({rack, setLetter, setCurrentBoardTile, updatePlayer1Rack}) 
         ? <div></div> 
         : rack.map((letter, i) => {
           return <img 
-                    src={window.letterImages[letter]} 
+                    src={window.Scrabble.letterImages[letter]} 
                     key={i} alt="scrabble letter" 
                     draggable="true"
                     onDragStart= {() => {rack.splice(rack.indexOf(letter),1)}}

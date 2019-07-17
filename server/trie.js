@@ -56,4 +56,5 @@ Trie.prototype.startWith = function(prefix) {
   return true;
 }
 
+let ScrabbleTrie = new Trie();
 

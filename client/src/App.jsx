@@ -20,7 +20,7 @@ const App = () => {
    if (window.Scrabble.scrabbleBag.length === 0) {
      console.log('Out of Tiles');
    } else {
-     window.Scrabble.scrabbleBag = window.shuffleScrabbleBag(window.Scrabble.scrabbleBag);
+     window.Scrabble.scrabbleBag = window.Scrabble.shuffleScrabbleBag(window.Scrabble.scrabbleBag);
      return window.Scrabble.scrabbleBag.pop();
    }
   }

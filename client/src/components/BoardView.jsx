@@ -1,5 +1,18 @@
 import React from 'react';
 
+// define component;
+// map the window grid
+// map each row of the grid
+// if the row has a letter appened to it
+  //return that letter's image
+// else if there is a current letter and a currentBoardTile and the currentBoardTile is being rendered
+  //return the image of the current letter
+// else 
+  //return an empty
+
+
+
+
 const BoardView = ({grid, updateGrid, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) => {
   return (
   <div className="container-board">

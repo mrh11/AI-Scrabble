@@ -72,14 +72,14 @@ let Board = function() {
 }
 
 Board.prototype.shuffleScrabbleBag = function(array) {
-    var m = array.length;
-    var t;
-    var i;
-    while (m) {
-      i = Math.floor(Math.random() * m--);
-      t = array[m];
-      array[m] = array[i];
-      array[i] = t;
+    let count = array.length;
+    let temp;
+    let i;
+    while (count) {
+      i = Math.floor(Math.random() * count--);
+      temp = array[count];
+      array[count] = array[i];
+      array[i] = temp;
     }
     return array;
 };

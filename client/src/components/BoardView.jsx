@@ -10,9 +10,6 @@ import React from 'react';
 // else 
   //return an empty
 
-
-
-
 const BoardView = ({grid, updateGrid, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) => {
   return (
   <div className="container-board">
@@ -33,15 +30,3 @@ const BoardView = ({grid, updateGrid, currentLetter, setCurrentBoardTile, curren
 };
 
 export default BoardView;
-
-// className={`square${i}${j}`}
-
-// {(currentLetter && currentLetter.length === 1) ? <img src={window.letterImages[currentLetter]} alt="letter"/> : <div></div>}
-
-
-
-
-
-//if a currentletter has been selected and the current square has been selected window.letterImage[currentLetter] should be rendered
-//otherwise render the normal div;
-

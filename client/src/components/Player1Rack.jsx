@@ -11,8 +11,8 @@ const Player1Rack = ({rack, setLetter, setCurrentBoardTile, updatePlayer1Rack}) 
                     src={window.Scrabble.letterImages[letter]} 
                     key={i} alt="scrabble letter" 
                     draggable="true"
-                    onDragStart= {() => {rack.splice(rack.indexOf(letter),1)}}
-                    onClick={()=>{setLetter(letter);}}/>
+                    onDragStart= {(e) => {e.dataTransfer.setData('tile', letter); setLetter(letter);}}/>
+                    // onClick={()=>{setLetter(letter);}}/>
           })
       }
     </div>

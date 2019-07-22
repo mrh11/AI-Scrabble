@@ -1,8 +1,6 @@
 import React from 'react';
 
-const BoardView = ({setLetter, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) => { 
-
-  return (
+const BoardView = ({setLetter, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) =>
   <div className="container-board">
     {window.Scrabble.grid.map((col, i) => { return (
       col.map((row, j) => {
@@ -19,6 +17,5 @@ const BoardView = ({setLetter, currentLetter, setCurrentBoardTile, currentBoardT
       })
     )})}
   </div>
-)};
 
 export default BoardView;

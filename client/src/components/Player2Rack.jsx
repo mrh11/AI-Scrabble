@@ -6,10 +6,10 @@ const Player2Rack = ({rack, setLetter}) => {
       {/* <img src="http://clipart-library.com/img/937517.png" alt="PlayerRack" /> */}
       {(rack.length === 0) 
         ? <div></div> 
-        : rack.map((letter, i) => <img src={window.Scrabble.letterImages[letter]} key={i} alt="scrabble letter" onClick={()=>{setLetter(letter)}}/>)
+        : rack.map((letter, i) => 
+        <img src={window.Scrabble.letterImages[letter]} key={i} alt={`letter`} draggable="true" onDragStart={(e)=>{e.dataTransfer.setData('tile', letter); setLetter(i);}}/>)
       }
     </div>
-
   )
 }
 

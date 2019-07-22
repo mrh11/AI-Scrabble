@@ -13,7 +13,7 @@ const App = () => {
   const [p1Rack, updatePlayer1Rack] = useState([]);  //add tiles to player1 rack
   const [p2Rack, updatePlayer2Rack] = useState([]); //add tiles to player2 rack
   const [word, changeWord] = useState('');  //will be used for word scoring
-  const [currentLetter, setLetter] = useState('')  //to select a letter from the rack
+  const [currentLetter, setLetter] = useState(0)  //to select a letter from the rack
   const [currentBoardTile, setCurrentBoardTile] = useState(''); //if a player clicks on a board tile while a letter is selected, render the tile
 
   let addLetterToRack = () => {
@@ -33,11 +33,11 @@ const App = () => {
 
     if (playerState === 1) {
       let letterArr = p1Rack;
-      letterArr.splice(letterArr.indexOf(aLetter),1);
+      letterArr.splice(currentLetter, 1);
       updatePlayer1Rack(letterArr);
     } else {
       let letterArr = p2Rack;
-      letterArr.splice(letterArr.indexOf(aLetter),1);
+      letterArr.splice(currentLetter, 1);
       updatePlayer2Rack(letterArr);
     }
   }

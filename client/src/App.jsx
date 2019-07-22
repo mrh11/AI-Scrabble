@@ -51,7 +51,7 @@ const App = () => {
         <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}}>Switch Player</button>
       </div>
       <img src="https://scrabblehrnyc22.s3.amazonaws.com/Board.png" alt="board picture" className="boardImage"/> 
-      <BoardView setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile} appendLetterToGrid={appendLetterToGrid}/>
+      <BoardView word={word} changeWord={changeWord} setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile} appendLetterToGrid={appendLetterToGrid}/>
       {(playerState === 1) 
         ? <Player1Rack rack={p1Rack} setLetter={setLetter} setCurrentBoardTile={setCurrentBoardTile} updatePlayer1Rack={updatePlayer1Rack}/> 
         : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 

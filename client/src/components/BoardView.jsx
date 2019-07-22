@@ -1,6 +1,17 @@
 import React from 'react';
 
-const BoardView = ({setLetter, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) =>
+const BoardView = ({word, changeWord, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) => {
+
+  let dropChanges = (e, coor) => {
+    e.preventDefault();
+    let tile = e.dataTransfer.getData('tile');
+    setCurrentBoardTile(coor);
+    appendLetterToGrid(tile, coor);
+    changeWord(word + tile);
+    console.log(word + tile);
+  }
+
+  return (
   <div className="container-board">
     {window.Scrabble.grid.map((col, i) => { return (
       col.map((row, j) => {
@@ -11,11 +22,12 @@ const BoardView = ({setLetter, currentLetter, setCurrentBoardTile, currentBoardT
         } else { // if the square is empty
          return (<div key={row.slice(0,5)} value={row.slice(0,5)}
          onDragOver = {(e)=>{e.preventDefault();}}
-         onDrop = {(e) => {let tile = e.dataTransfer.getData('tile'); setCurrentBoardTile(row.slice(0,5)); appendLetterToGrid(tile, row.slice(0,5)); console.log(row.slice(0,5));}}>
-                </div>)
+         onDrop = {(e) => {dropChanges(e, row.slice(0,5))}}>
+    </div>)
         }
       })
     )})}
   </div>
+  )}
 
 export default BoardView;

@@ -58,3 +58,6 @@ Trie.prototype.startWith = function(prefix) {
 
 let ScrabbleTrie = new Trie();
 
+module.exports = {
+  ScrabbleTrie
+}

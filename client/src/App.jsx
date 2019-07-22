@@ -26,8 +26,7 @@ const App = () => {
   }
 
   //create function which efficiently locates on the grid the currentBoardTile and Appends the letter to it
-  let appendLetterToGrid = (aLetter) => {
-    let str = currentBoardTile;
+  let appendLetterToGrid = (aLetter, str) => {
     let row = Number(str.slice(3,5));
     let col = Number(str.slice(0,2));
     window.Scrabble.grid[row][col] += aLetter;

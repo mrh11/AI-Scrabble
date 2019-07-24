@@ -13,8 +13,9 @@ const App = () => {
   const [p1Rack, updatePlayer1Rack] = useState([]);  //add tiles to player1 rack
   const [p2Rack, updatePlayer2Rack] = useState([]); //add tiles to player2 rack
   const [word, changeWord] = useState('');  //will be used for word scoring
-  const [currentLetter, setLetter] = useState(0)  //to select a letter from the rack
+  const [currentLetter, setLetter] = useState(0)  //to move a letter from rack to board
   const [currentBoardTile, setCurrentBoardTile] = useState(''); //if a player clicks on a board tile while a letter is selected, render the tile
+  const [wordScore, setWordScore] = useState(0);
 
   let addLetterToRack = () => {
    if (window.Scrabble.scrabbleBag.length === 0) {
@@ -51,7 +52,7 @@ const App = () => {
         <button onClick={()=>{(playerState === 1) ? changePlayer(2) : changePlayer(1); setCurrentBoardTile(''); setLetter('')}}>Switch Player</button>
       </div>
       <img src="https://scrabblehrnyc22.s3.amazonaws.com/Board.png" alt="board picture" className="boardImage"/> 
-      <BoardView word={word} changeWord={changeWord} setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile} appendLetterToGrid={appendLetterToGrid}/>
+      <BoardView word={word} changeWord={changeWord} setLetter={setLetter} currentLetter={currentLetter} currentBoardTile={currentBoardTile} setCurrentBoardTile={setCurrentBoardTile} appendLetterToGrid={appendLetterToGrid} wordScore={wordScore} setWordScore={setWordScore}/>
       {(playerState === 1) 
         ? <Player1Rack rack={p1Rack} setLetter={setLetter} setCurrentBoardTile={setCurrentBoardTile} updatePlayer1Rack={updatePlayer1Rack}/> 
         : <Player2Rack rack={p2Rack} setLetter={setLetter}/>} 

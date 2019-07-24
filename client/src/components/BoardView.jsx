@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BoardView = ({word, changeWord, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid}) => {
+const BoardView = ({word, changeWord, currentLetter, setCurrentBoardTile, currentBoardTile, appendLetterToGrid, setWordScore}) => {
 
   let dropChanges = (e, coor) => {
     e.preventDefault();
@@ -8,7 +8,7 @@ const BoardView = ({word, changeWord, currentLetter, setCurrentBoardTile, curren
     setCurrentBoardTile(coor);
     appendLetterToGrid(tile, coor);
     changeWord(word + tile);
-    console.log(word + tile);
+    console.log(window.Scrabble.wordScore(tile, coor)
   }
 
   return (
@@ -20,10 +20,7 @@ const BoardView = ({word, changeWord, currentLetter, setCurrentBoardTile, curren
         } else if (currentLetter && currentBoardTile && currentBoardTile === row) { // if a tile has been selected but the tile has not been set
           return (<img src={window.Scrabble.letterImages[currentLetter]} alt="a letter" key={row.slice(0,5)} style={{width: '95%'}} />)
         } else { // if the square is empty
-         return (<div key={row.slice(0,5)} value={row.slice(0,5)}
-         onDragOver = {(e)=>{e.preventDefault();}}
-         onDrop = {(e) => {dropChanges(e, row.slice(0,5))}}>
-    </div>)
+         return (<div key={row.slice(0,5)} value={row.slice(0,5)} onDragOver = {(e)=>{e.preventDefault();}} onDrop = {(e) => {dropChanges(e, row.slice(0,5))}}/>)
         }
       })
     )})}

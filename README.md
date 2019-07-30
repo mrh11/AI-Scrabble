@@ -3,7 +3,7 @@
 ## UI Features:
 
 Pick Shuffled Letters:
-![](drawLetters.gif)
+![](pickLetters.gif)
 
 Drag and Drop Letters to the Board:
 ![](setWords.gif)

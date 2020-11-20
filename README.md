@@ -1,5 +1,5 @@
 # AI-Scrabble
-this repo contains a personal project to build an AI Scrabble player with an attractive UI.  The gifs below show current progress in the app
+this repo contains a personal project to build an AI Scrabble player with an attractive UI.
 ## UI Features:
 
 Pick Shuffled Letters:
